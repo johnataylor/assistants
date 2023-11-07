@@ -1,0 +1,15 @@
+{
+  "name": "assistants",
+  "version": "1.0.0",
+  "description": "OpenAI assistants",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "openai": "^4.16.1"
+  }
+}
