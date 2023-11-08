@@ -30,11 +30,6 @@ const run = await openai.beta.threads.runs.create(
   }
 );
 
-const run2 = await openai.beta.threads.runs.retrieve(
-  thread.id,
-  run.id
-);
-
 for (var i=0; i<10; i++)
 {
     const run2 = await openai.beta.threads.runs.retrieve(
@@ -65,9 +60,3 @@ messages.data.forEach (message => {
 function delay(time) {
   return new Promise(resolve => setTimeout(resolve, time));
 } 
-  
-//const messages = await openai.beta.threads.messages.list(
-//  thread.id
-//);
-
-//console.log(thread);
