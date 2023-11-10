@@ -1,34 +1,29 @@
 
+
 import { createInterface } from "readline";
 
-const rl = createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const readlineInterface = createInterface({ input: process.stdin, output: process.stdout });
 
-const question = (str) => new Promise(resolve => rl.question(str, resolve));
+const question = (str) => new Promise(resolve => readlineInterface.question(str, resolve));
+const delay = (time) => new Promise(resolve => setTimeout(resolve, time));
 
 import { OpenAI } from "openai";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const assistant = await openai.beta.assistants.create({
-    name: "Math Tutor",
-    instructions: "You are a personal math tutor. Write and run code to answer math questions.",
-    tools: [{ type: "code_interpreter" }],
-    model: "gpt-4-1106-preview"
-  });
+  name: "Math Tutor",
+  instructions: "You are a personal math tutor. Write and run code to answer math questions.",
+  tools: [{ type: "code_interpreter" }],
+  model: "gpt-4-1106-preview"
+});
 
 const thread = await openai.beta.threads.create();
-
-let prompt = "user> ";
 
 // the chat loop
 while (true) {
 
-    const userInput = await question(prompt);
+  const userInput = await question("user> ");
 
   const message = await openai.beta.threads.messages.create(
     thread.id,
@@ -38,35 +33,25 @@ while (true) {
     }
   );
 
-  const run = await openai.beta.threads.runs.create(thread.id, { assistant_id: assistant.id });
+  const createRun = await openai.beta.threads.runs.create(thread.id, { assistant_id: assistant.id });
 
-  // the waiting on the response loop
+  // loop waiting on the response - max iterations being 10 here
   for (var i=0; i<10; i++)
   {
-    const run2 = await openai.beta.threads.runs.retrieve(
-      thread.id,
-      run.id
-    );
+    const retrieveRun = await openai.beta.threads.runs.retrieve(thread.id, createRun.id);
 
-    await delay(1000);
-
-    console.log('.');
-
-    if (run2.status == 'completed') {
+    if (retrieveRun.status == 'completed') {
       break;
     }
+
+    console.log('.');
+    await delay(1000);
   }
 
-  const messages = await openai.beta.threads.messages.list(
-    thread.id
-  );
-
+  const messages = await openai.beta.threads.messages.list(thread.id);
   const assistantResponse = messages.data[0].content[0].text.value;
 
   console.log('assistant> ' + assistantResponse);
 }
 
-function delay(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-  } 
-  
+
