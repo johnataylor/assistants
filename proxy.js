@@ -6,11 +6,13 @@ const app = express();
 
 var intercept = function(req, res, next) {
 
+    const method = req.method;
     const originalUrl = req.originalUrl;
     const contentType = req.get("content-type");
     const openAIBeta = req.get("OpenAI-Beta");
    
-    console.log(req.originalUrl);
+    console.log(method);
+    console.log(originalUrl);
     console.log(contentType);
     console.log(openAIBeta);
 

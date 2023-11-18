@@ -1,0 +1,16 @@
+{
+    "id": "asst_0Cx4lFnn2vJywKjO4GXhIrHk",
+    "object": "assistant",
+    "created_at": 1700243856,
+    "name": "Math Tutor",
+    "description": null,
+    "model": "gpt-4-1106-preview",
+    "instructions": "You are a personal math tutor. Write and run code to answer math questions.",
+    "tools": [
+        {
+            "type": "code_interpreter"
+        }
+    ],
+    "file_ids": [],
+    "metadata": {}
+}
