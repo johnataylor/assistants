@@ -1,0 +1,45 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "msg_bJnT7hS8ndeGZantqKdQ5orl",
+      "object": "thread.message",
+      "created_at": 1700678075,
+      "thread_id": "thread_ZgRCE1aSUVN0aF6S1aTOebQx",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": {
+            "value": "The solution to the equation \\\\(5x = 15\\\\) is \\\\(x = 3\\\\).",
+            "annotations": []
+            }
+        }],
+        "file_ids": [],
+        "assistant_id": "asst_dri2h0LflpNCWq7LhtkOvQgk",
+        "run_id": "run_l7XMOpkYN2ollySysh1lcVbL",      
+        "metadata": {}
+    },
+    {
+      "id": "msg_2Sie5g3tZNCeUK3e3Z1hnNs8",
+      "object": "thread.message",
+      "created_at": 1700678064,
+      "thread_id": "thread_ZgRCE1aSUVN0aF6S1aTOebQx",
+      "role": "user",
+      "content": [{          
+        "type": "text",          
+        "text": {            
+           "value": "solve for x in 5x = 15",
+           "annotations": []          
+         }
+       }],      
+       "file_ids": [],      
+       "assistant_id": null,      
+       "run_id": null,      
+       "metadata": {}
+    }
+  ],
+  "first_id": "msg_bJnT7hS8ndeGZantqKdQ5orl",
+  "last_id": "msg_2Sie5g3tZNCeUK3e3Z1hnNs8",  
+  "has_more": false
+}

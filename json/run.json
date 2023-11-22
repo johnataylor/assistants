@@ -1,0 +1,23 @@
+{
+  "id": "run_XPapmFefTC6PKV5xGH9gMGmZ",
+  "object": "thread.run",
+  "created_at": 1700676458,
+  "assistant_id": "asst_IpYtxoK6VpKUDznBRfTwMlym",
+  "thread_id": "thread_Xr8SBbGfY0rp99wYWHBNTWhZ",
+  "status": "queued",
+  "started_at": null,
+  "expires_at": 1700677058,
+  "cancelled_at": null,
+  "failed_at": null,
+  "completed_at": null,
+  "last_error": null,
+  "model": "gpt-4-1106-preview",
+  "instructions": "You are a personal math tutor. Write and run code to answer math questions.",
+  "tools": [
+    {
+      "type": "code_interpreter"
+    }
+  ],
+  "file_ids": [],
+  "metadata": {}
+}
