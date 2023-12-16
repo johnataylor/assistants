@@ -10,5 +10,5 @@ const assistants = await openai.beta.assistants.list();
 
 for (var i=0; i<assistants.data.length; i++) {
   const assistant = assistants.data[i];
-  console.log(assistant.id);
+  console.log(assistant.id + ' ' + assistant.name);
 }

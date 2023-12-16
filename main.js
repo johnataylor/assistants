@@ -28,6 +28,15 @@ while (true) {
 
   const userInput = await question("user> ");
 
+  if (userInput.trim() === '') {
+    continue;
+  }
+
+  if (userInput.trim() === 'exit') {
+    console.log('bye');
+    break;
+  }
+
   const message = await openai.beta.threads.messages.create(
     thread.id,
     {
@@ -57,4 +66,4 @@ while (true) {
   console.log('assistant> ' + assistantResponse);
 }
 
-
+process.exit();
