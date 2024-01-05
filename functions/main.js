@@ -47,7 +47,11 @@ const assistant = await openai.beta.assistants.create({
   }]
 });
 
+console.log(JSON.stringify(assistant, null, 2));
+
 const thread = await openai.beta.threads.create();
+
+console.log(JSON.stringify(thread, null, 2));
 
 // the chat loop
 while (true) {
@@ -71,7 +75,11 @@ while (true) {
     }
   );
 
+  console.log(JSON.stringify(message, null, 2));
+
   const run = await openai.beta.threads.runs.create(thread.id, { assistant_id: assistant.id });
+
+  console.log(JSON.stringify(run, null, 2));
 
   // loop waiting on the response - max iterations being 10 here
   for (var i=0; i<10; i++)
@@ -121,6 +129,13 @@ while (true) {
   const steps = await openai.beta.threads.runs.steps.list(thread.id, run.id);
   steps.data.forEach(step => {
     console.log(`  ${step.id} ${step.type}`);
+    if (step.type == 'tool_calls') {
+      step.step_details.tool_calls.forEach(toolCall => {
+        if (toolCall.type == 'function') {
+          console.log(`${toolCall.function.name}('${toolCall.function.arguments}') -> ${toolCall.function.output}`);
+        }
+      });
+    }
   });
 
   const messages = await openai.beta.threads.messages.list(thread.id);

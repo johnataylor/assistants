@@ -21,7 +21,7 @@ const assistant2 = await openai.beta.assistants.create({
 console.log(assistant2.id);
 
 const assistant3 = await openai.beta.assistants.create({
-  name: "Assistant1",
+  name: "Assistant3",
   instructions: "You are an assistant who can add using the add function.",
   model: "gpt-4-1106-preview",
   tools: [{
@@ -44,7 +44,7 @@ const assistant3 = await openai.beta.assistants.create({
 console.log(assistant3.id);
 
 const assistant4 = await openai.beta.assistants.create({
-  name: "Assistant1",
+  name: "Assistant4",
   instructions: "You are an assistant who can add and retrieve data using the tools.",
   model: "gpt-4-1106-preview",
   tools: [{
