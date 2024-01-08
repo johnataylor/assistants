@@ -50,6 +50,22 @@ do {
   await dumpSteps(thread.id, run.id);
   await delay(1000);
   run = await openai.beta.threads.runs.retrieve(thread.id, run.id);
+
+  if (run.status == 'requires_action') {
+
+    const tool_outputs = [];
+    run.required_action.submit_tool_outputs.tool_calls.forEach(toolCall => {
+      const toolCallId = toolCall.id;
+      const name = toolCall.function.name;
+      const args = JSON.parse(toolCall.function.arguments);
+      if (name == 'getCurrentWeather') {
+        const output = getCurrentWeather(args);
+        tool_outputs.push({ tool_call_id: toolCallId, output: output });
+      }
+    });
+
+    await openai.beta.threads.runs.submitToolOutputs(thread.id, run.id, { tool_outputs: tool_outputs });
+  }
 }
 while (run.status != 'completed');
 
@@ -63,6 +79,10 @@ await dumpSteps(thread.id, run.id);
 console.log('dumpMessages:');
 dumpMessages(thread.id)
 
+function getCurrentWeather(args) {
+  console.log('>>> getCurrentWeather');
+  return 'sunny';
+}
 
 async function dumpSteps(threadId, runId) {
   const steps = await openai.beta.threads.runs.steps.list(threadId, runId);
