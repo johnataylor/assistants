@@ -10,5 +10,5 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, baseURL: baseURL
 
 const assistant = await openai.beta.assistants.retrieve(assistantId);
 
-console.log(assistant.id + ' ' + assistant.name);
+console.log(`${assistant.id} ${assistant.object} ${assistant.name} ${assistant.description} ${assistant.instructions} ${assistant.model}`);
 
