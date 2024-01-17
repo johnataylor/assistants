@@ -1,0 +1,8 @@
+{
+    "error": {
+      "message": "1 validation error for Request\nbody -> model\n  none is not an allowed value (type=type_error.none.not_allowed)",
+      "type": "invalid_request_error",
+      "param": null,
+      "code": null
+    }
+  }
