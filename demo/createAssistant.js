@@ -11,7 +11,7 @@ const assistant = await openai.beta.assistants.create({
   description: "This is the math tutor test bot.",
   instructions: "You are a personal math tutor. Write and run code to answer math questions.",
   tools: [{ type: "code_interpreter" }],
-  //model: "gpt-4-1106-preview"
+  model: "gpt-4-1106-preview"
 });
 
 console.log(assistant.id);
