@@ -10,4 +10,4 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, baseURL: baseURL
 
 const thread = await openai.beta.threads.retrieve(threadId);
 
-console.log(thread.id + ' ' + thread.name);
+console.log(thread.id);
